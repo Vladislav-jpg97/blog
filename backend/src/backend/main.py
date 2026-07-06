@@ -1,4 +1,7 @@
 from fastapi import FastAPI
+from src.backend.api.v1.posts import router as post_router
+from src.backend.api.v1.feed import router as feed_router
+from src.backend.api.v1.user import router as user_router
 
 # Создали объект приложения FASTapi
 app = FastAPI(
@@ -21,3 +24,6 @@ async def health_check():
 # src.backend.main:app - модуль пайтона в котором приложение
 # app - название объекта
 # --reload - перезагрузка при изменение файлов
+app.include_router(post_router,prefix="/api/v1")
+app.include_router(feed_router,prefix="/api/v1")
+app.include_router(user_router,prefix="/api/v1")
